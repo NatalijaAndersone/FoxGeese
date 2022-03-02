@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fg.HelloController">
+   <children>
+      <Label layoutX="335.0" layoutY="22.0" prefHeight="17.0" prefWidth="31.0" text="Rules" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextArea editable="false" layoutX="32.0" layoutY="53.0" prefHeight="295.0" prefWidth="636.0" text="Fox &amp; Geese is a game of inequality. The geese cannot capture the fox but aim, through the benefit of numbers, to hem the fox in so that he cannot move. The objective of the fox, on the other hand, is to capture geese until it becomes impossible for them to trap him. The geese start by occupying all 6 squares of one arm of the cross plus the whole first adjacent row and the two end points of the central row. The fox starts in the middle of the board.&#10;&#10;The geese move first. Players take turns to move a goose or the fox to an adjacent point along a line. However, the geese are restricted to being able to move directly forwards, diagonally forwards or sideways only.&#10;&#10;Upon the fox's turn, if a goose is adjacent to the fox with an empty point directly behind, the fox may capture that goose by hopping over it into the empty square and removing the smitten goose from the board.&#10;&#10;Captured pieces are never replayed onto the board and remain captured for the remainder of the game. The game is finished when a player loses either by being reduced to two pieces or by being unable to move.&#10;&#10;Like all unequal games, it makes sense to play an even number of games, each player alternating between playing the fox and playing the geese. The player who wins the most games wins the match.&#10;" wrapText="true">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#changeToMain" text="Back" />
+   </children>
+</AnchorPane>
