@@ -46,4 +46,11 @@ public class HelloController {
         window.setScene(ruleScene);
         window.show();
     }
+    public void changeToScore(ActionEvent event) throws IOException {
+        Parent ruleP = FXMLLoader.load(getClass().getResource("Scores.fxml"));
+        Scene ruleScene =  new Scene(ruleP);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(ruleScene);
+        window.show();
+    }
 }

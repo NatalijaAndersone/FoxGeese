@@ -28,7 +28,7 @@
       </Label>
       <AnchorPane layoutX="310.0" layoutY="212.0" prefHeight="25.0" prefWidth="100.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Scores" />
+            <Button mnemonicParsing="false" onAction="#changeToScore" prefHeight="25.0" prefWidth="100.0" text="Scores" />
          </children>
       </AnchorPane>
    </children>
