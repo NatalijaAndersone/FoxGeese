@@ -24,10 +24,10 @@ public class DataBase {
 
 
 
-    // @Override
+    // Gets scores info from DB
     public List<Table> getNames(){
-        int top = 10;
-        int place = 0;
+        int top = 10;   // The number of showed results
+        int place = 0;  // It is used to show the place from 1 to 'top'
         String query = "SELECT * FROM results ORDER BY points DESC LIMIT '"+top+"'";
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
