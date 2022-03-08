@@ -22,10 +22,11 @@ public class TableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.getItems().addAll(db.getNames());
+        listView.getItems().addAll(db.getNames());  // Shows results in result table
+
     }
 
-    @FXML
+    @FXML   // Buton 'Back' to main / first window
     public void changeToMain(ActionEvent event) throws IOException {
         Parent ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         //Parent ruleP = FXMLLoader.load(getClass().getResource("hello-view.fxml"));

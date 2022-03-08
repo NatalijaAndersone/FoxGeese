@@ -16,38 +16,35 @@ public class DataBase {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             connection.close();
-            System.out.println("written to db");
-        } catch (Exception e){
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.out.println("Written to db.");
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
-
-
-    // Gets scores info from DB
-    public List<Table> getNames(){
+    // Collects score info from DB
+    public List<Table> getNames() {
         int top = 10;   // The number of showed results
-        int place = 0;  // It is used to show the place from 1 to 'top'
-        String query = "SELECT * FROM results ORDER BY points DESC LIMIT '"+top+"'";
+        int place = 0;  // This variable is used to represent the place from 1 to 'top'
+        String query = "SELECT * FROM results ORDER BY points DESC LIMIT '" + top + "'";    // Collects names and points descending by points
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             List<Table> returnValues = new ArrayList<>();
             while (resultSet.next()) {
-                place ++;
+                place++;
                 returnValues.add(new Table(place, resultSet.getString("name"), resultSet.getInt("points")));
                 //System.out.println(place + "\t" + resultSet.getString("name") + "\t" + resultSet.getInt("points"));
-                //connection.close();
             }
             return returnValues;
 
         } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return null;
     }
-
+}
 /*
     public static void main(String[] args) throws SQLException {
         DataBase db = new DataBase();
@@ -59,4 +56,4 @@ public class DataBase {
 
     }
  */
-}
+
