@@ -37,10 +37,6 @@ public class ChangeWindowController{
     private final IntegerProperty tileYOffset = new SimpleIntegerProperty();
 
     private final Pane pane = new Pane();
-    //private final Stage stage = new Stage();
-    //private final Scene scene = new Scene(pane);
-
-
 
     private ImageView[][] tiles;
 
@@ -77,23 +73,14 @@ public class ChangeWindowController{
     @FXML
     private TextField player_name_txt;
 
-    public void Start_game(ActionEvent event) throws IOException {
+    public void Start_game(ActionEvent event) throws Exception {
         String player_name = player_name_txt.getText();
         System.out.println(player_name);
         DataBase db = new DataBase();
         db.insertIntoDB(player_name,  21);
 
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            //stage.show();
-            runGame(stage);
+        runGame(event);
 
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void changeToScore(ActionEvent event) throws IOException {
@@ -106,7 +93,7 @@ public class ChangeWindowController{
 
     }
 
-    public void runGame(Stage stage) throws Exception {
+    public void runGame(ActionEvent event) throws Exception {
 
         build();
 
@@ -115,6 +102,7 @@ public class ChangeWindowController{
         pane.setMaxSize(PANE_WIDTH, PANE_HEIGHT);
 
         Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
