@@ -27,8 +27,8 @@ public class ChangeWindowController{
     private static final int TILE_WIDTH = 48;
     private static final int TILE_HEIGHT = 48;
 
-    private static final int PANE_WIDTH = 720;
-    private static final int PANE_HEIGHT = 720;
+    private static final int PANE_WIDTH = 700;
+    private static final int PANE_HEIGHT = 400;
 
     private final DoubleProperty xOffset = new SimpleDoubleProperty();
     private final DoubleProperty yOffset = new SimpleDoubleProperty();
@@ -155,46 +155,46 @@ public class ChangeWindowController{
     private Image getImage(int column, int row) throws FileNotFoundException {
         Label label = new Label();
 
-        if ((column == 6 && row == 8) || (column == 8 && row == 6) || (column == 8 && row == 8) || (column == 8 && row == 10) || (column == 10 && row == 8)) {
+        if ((column == 6 && row == 8-3) || (column == 8 && row == 6-3) || (column == 8 && row == 8-3) || (column == 8 && row == 10-3) || (column == 10 && row == 8-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p5.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 8) || (column == 8 && row == 7) || (column == 8 && row == 9) || (column == 9 && row == 8)) {
+        } else if ((column == 7 && row == 8-3) || (column == 8 && row == 7-3) || (column == 8 && row == 9-3) || (column == 9 && row == 8-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c2468.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 7) || (column == 7 && row == 5)) {
+        } else if ((column == 5 && row == 7-3) || (column == 7 && row == 5-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p1.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 6 && row == 7) || (column == 8 && row == 5) || (column == 10 && row == 7)) {
+        } else if ((column == 6 && row == 7-3) || (column == 8 && row == 5-3) || (column == 10 && row == 7-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p2.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 5) || (column == 11 && row == 7)) {
+        } else if ((column == 9 && row == 5-3) || (column == 11 && row == 7-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p3.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 8) || (column == 7 && row == 6) || (column == 7 && row == 10)) {
+        } else if ((column == 5 && row == 8-3) || (column == 7 && row == 6-3) || (column == 7 && row == 10-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p4.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 6) || (column == 9 && row == 10) || (column == 11 && row == 8)) {
+        } else if ((column == 9 && row == 6-3) || (column == 9 && row == 10-3) || (column == 11 && row == 8-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p6.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 9) || (column == 7 && row == 11)) {
+        } else if ((column == 5 && row == 9-3) || (column == 7 && row == 11-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p7.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 6 && row == 9) || (column == 8 && row == 11) || (column == 10 && row == 9)) {
+        } else if ((column == 6 && row == 9-3) || (column == 8 && row == 11-3) || (column == 10 && row == 9-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p8.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 11) || (column == 11 && row == 9)) {
+        } else if ((column == 9 && row == 11-3) || (column == 11 && row == 9-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p9.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 7)) {
+        } else if ((column == 7 && row == 7-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c1.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 7)) {
+        } else if ((column == 9 && row == 7-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c7.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 9)) {
+        } else if ((column == 7 && row == 9-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c3.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 9)) {
+        } else if ((column == 9 && row == 9-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c9.png"));
             label.setGraphic(new ImageView(image));
         } else {
