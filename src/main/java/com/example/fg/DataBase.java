@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBase {
-    static String pathToDB = "C:\\Users\\ba_in\\IdeaProjects\\FoxGeese\\src\\main\\resources\\database\\foxandgeesedb.db";
+    static String pathToDB = "src\\main\\resources\\database\\foxandgeesedb.db";
 
     public void insertIntoDB(String name, int points, String role) {
 
