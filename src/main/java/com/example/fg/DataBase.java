@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBase {
-    static String pathToDB = "C:\\Users\\ba_in\\IdeaProjects\\FoxGeese\\src\\main\\java\\com\\example\\fg\\foxandgeesedb.db";
+    static String pathToDB = "C:\\Users\\ba_in\\IdeaProjects\\FoxGeese\\src\\main\\resources\\database\\foxandgeesedb.db";
 
     public void insertIntoDB(String name, int points) {
 
@@ -26,16 +26,18 @@ public class DataBase {
     public List<Table> getNames() {
         int top = 10;   // The number of showed results
         int place = 0;  // This variable is used to represent the place from 1 to 'top'
-        String query = "SELECT * FROM results ORDER BY points DESC LIMIT '" + top + "'";    // Collects names and points descending by points
+        //String query = "SELECT name, points FROM results ORDER BY points DESC LIMIT '" + top + "'";    // Collects names and points descending by points
+        String query_f = "SELECT name, points FROM results WHERE role = 'F' ORDER BY points DESC LIMIT '" + top + "'";    // Collects names and points descending by points
+        //String query_g = "SELECT name, points FROM results WHERE role = 'G' ORDER BY points DESC LIMIT '" + top + "'";    // Collects names and points descending by points
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery(query_f);
             List<Table> returnValues = new ArrayList<>();
             while (resultSet.next()) {
                 place++;
                 returnValues.add(new Table(place, resultSet.getString("name"), resultSet.getInt("points")));
-                //System.out.println(place + "\t" + resultSet.getString("name") + "\t" + resultSet.getInt("points"));
+                System.out.println(place + "\t" + resultSet.getString("name") + "\t\t" + resultSet.getInt("points"));
             }
             return returnValues;
 

@@ -71,13 +71,18 @@ public class ChangeWindowController{
     }
 
     @FXML
-    private TextField player_name_txt;
+    private TextField player_fox_txt;
+    @FXML
+    private TextField player_goose_txt;
 
     public void Start_game(ActionEvent event) throws Exception {
-        String player_name = player_name_txt.getText();
-        System.out.println(player_name);
+        String player_fox = player_fox_txt.getText();
+        String player_goose = player_goose_txt.getText();
+        System.out.println(player_fox);
+        System.out.println(player_goose);
         DataBase db = new DataBase();
-        db.insertIntoDB(player_name,  21);
+        db.insertIntoDB(player_fox,  20);
+        db.insertIntoDB(player_goose,  18);
 
         runGame(event);
 

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fg.ChangeWindowController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fg.ChangeWindowController">
    <children>
-      <Label layoutX="302.0" layoutY="116.0" text="Enter name">
+      <Label layoutX="257.0" layoutY="45.0" text="Enter players names">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <AnchorPane layoutX="325.0" layoutY="277.0" prefHeight="25.0" prefWidth="50.0">
@@ -16,11 +20,27 @@
             <Button mnemonicParsing="false" onAction="#Start_game" prefHeight="25.0" prefWidth="50.0" text="Start" />
          </children>
       </AnchorPane>
-      <TextField fx:id="player_name_txt" layoutX="276.0" layoutY="175.0" />
+      <TextField fx:id="player_fox_txt" alignment="CENTER" layoutX="276.0" layoutY="113.0" />
       <AnchorPane layoutX="326.0" layoutY="349.0" prefHeight="25.0" prefWidth="50.0">
          <children>
             <Button layoutY="1.0" mnemonicParsing="false" onAction="#changeToMain" prefHeight="25.0" prefWidth="50.0" text="Back" />
          </children>
       </AnchorPane>
+      <Label layoutX="340.0" layoutY="156.0" text="VS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="player_goose_txt" alignment="CENTER" layoutX="276.0" layoutY="203.0" />
+      <ImageView fitHeight="27.0" fitWidth="41.0" layoutX="235.0" layoutY="202.0">
+         <image>
+            <Image url="@../../../tiles/goose.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="41.0" layoutX="235.0" layoutY="111.0">
+         <image>
+            <Image url="@../../../tiles/fox.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
