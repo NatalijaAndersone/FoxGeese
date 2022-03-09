@@ -8,9 +8,9 @@ import java.util.List;
 public class DataBase {
     static String pathToDB = "C:\\Users\\ba_in\\IdeaProjects\\FoxGeese\\src\\main\\resources\\database\\foxandgeesedb.db";
 
-    public void insertIntoDB(String name, int points) {
+    public void insertIntoDB(String name, int points, String role) {
 
-        String query = "INSERT INTO results VALUES (null, '" + name + "', '" + points + "')";
+        String query = "INSERT INTO results VALUES (null, '" + name + "', '" + points + "', '" + role + "')";
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
             Statement statement = connection.createStatement();

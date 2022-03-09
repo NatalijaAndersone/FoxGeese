@@ -22,9 +22,13 @@ public class Table {
     public int getScore() {
         return score;
     }
-    @Override
-    public String toString(){
-        return " " + place + "\t\t\t"+ name + "    \t\t\t\t"+ score;    // Forms the line in results table
 
+    @Override   // Forms the line in results table
+    public String toString(){
+        if (name.length() <= 7) {
+            return " " + place + "\t\t\t"+ name + "    \t\t\t\t"+ score;
+        } else {
+            return " " + place + "\t\t\t"+ name + "    \t\t\t"+ score;
+        }
     }
 }

@@ -81,8 +81,8 @@ public class ChangeWindowController{
         System.out.println(player_fox);
         System.out.println(player_goose);
         DataBase db = new DataBase();
-        db.insertIntoDB(player_fox,  20);
-        db.insertIntoDB(player_goose,  18);
+        db.insertIntoDB(player_fox,  20, "F");
+        db.insertIntoDB(player_goose,  18, "G");
 
         runGame(event);
 
