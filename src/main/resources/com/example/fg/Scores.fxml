@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fg.ChangeWindowController">
    <children>
       <Label layoutX="275.0" layoutY="36.0" text="BEST SCORES">
@@ -25,10 +24,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <AnchorPane layoutX="536.0" layoutY="343.0" prefHeight="25.0" prefWidth="50.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#changeToMain" prefHeight="25.0" prefWidth="50.0" text="Back" />
-         </children>
-      </AnchorPane>
+      <Button layoutX="515.0" layoutY="343.0" mnemonicParsing="false" onAction="#changeToMain" prefHeight="0.0" prefWidth="50.0" text="Back" />
    </children>
 </AnchorPane>
