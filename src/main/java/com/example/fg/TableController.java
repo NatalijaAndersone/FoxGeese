@@ -18,11 +18,15 @@ public class TableController implements Initializable {
     DataBase db = new DataBase();
 
     @FXML
-    private ListView<Table> listView;
+    private ListView<Table> listView_f;
+
+    @FXML
+    private ListView<Table> listView_g;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listView.getItems().addAll(db.getNames());  // Shows results in result table
+        listView_f.getItems().addAll(db.getNames("F"));  // Shows results in result table
+        listView_g.getItems().addAll(db.getNames("G"));  // Shows results in result table
 
     }
 
