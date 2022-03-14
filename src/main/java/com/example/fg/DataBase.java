@@ -22,6 +22,20 @@ public class DataBase {
         }
     }
 
+    public void deleteFromDB() {
+
+        String query = "DELETE FROM results WHERE role = 'T'";
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            connection.close();
+            System.out.println("Removed from DB.");
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+    }
+
     // Collects score info from DB
     public List<Table> getNames(String role) {
         int top = 10;   // The number of showed results

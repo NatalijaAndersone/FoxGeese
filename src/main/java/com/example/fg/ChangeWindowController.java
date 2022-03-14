@@ -1,28 +1,33 @@
 package com.example.fg;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
-
 public class ChangeWindowController{
+    int fox_score = 0;      //Points in the beginning of the game
+    int geese_score = 15;
 
     private static final int TILE_WIDTH = 48;
     private static final int TILE_HEIGHT = 48;
@@ -69,7 +74,7 @@ public class ChangeWindowController{
         window.setScene(ruleScene);
         window.show();
     }
-
+    //  Players names from PlayerNameScreen window
     @FXML
     private TextField player_fox_txt;
     @FXML
@@ -80,9 +85,7 @@ public class ChangeWindowController{
         String player_goose = player_goose_txt.getText();
         System.out.println(player_fox);
         System.out.println(player_goose);
-        DataBase db = new DataBase();
-        db.insertIntoDB(player_fox,  20, "F");
-        db.insertIntoDB(player_goose,  18, "G");
+        //DataBase db = new DataBase();
 
         runGame(event);
 
@@ -99,6 +102,10 @@ public class ChangeWindowController{
     }
 
     public void runGame(ActionEvent event) throws Exception {
+        // Images of buttons on the right
+        Image image_c = new Image(new FileInputStream("src\\main\\resources\\tiles\\cave_small.png"));
+        Image image_f = new Image(new FileInputStream("src\\main\\resources\\tiles\\fox_flag_small1.png"));
+        Image image_g = new Image(new FileInputStream("src\\main\\resources\\tiles\\roasted_goose_small1.png"));
 
         build();
 
@@ -106,8 +113,51 @@ public class ChangeWindowController{
         pane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
         pane.setMaxSize(PANE_WIDTH, PANE_HEIGHT);
 
+
+        Button button_c = new Button("",new ImageView(image_c));
+        Button button_f = new Button("",new ImageView(image_f));
+        Button button_g = new Button("",new ImageView(image_g));
+
+        button_c.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                System.out.println("Accepted");
+            }
+        });
+
+        button_f.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                System.out.println("Accepted_fox: " + fox_score);
+                fox_score --;
+                /*
+                try {
+                    build();
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                */
+            }
+        });
+
+        button_g.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                System.out.println("Accepted_g");
+            }
+        });
+
+        button_c.setLayoutX(600);
+        button_c.setLayoutY(20);
+        button_f.setLayoutX(600);
+        button_f.setLayoutY(80);
+        button_g.setLayoutX(600);
+        button_g.setLayoutY(140);
+
+        pane.getChildren().add(button_c);
+        pane.getChildren().add(button_f);
+        pane.getChildren().add(button_g);
+
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Play Fox & Geese!");
         stage.setScene(scene);
         stage.show();
     }
@@ -154,7 +204,6 @@ public class ChangeWindowController{
 
     private Image getImage(int column, int row) throws FileNotFoundException {
         Label label = new Label();
-
         if ((column == 6 && row == 8-3) || (column == 8 && row == 6-3) || (column == 8 && row == 8-3) || (column == 8 && row == 10-3) || (column == 10 && row == 8-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p5.png"));
             label.setGraphic(new ImageView(image));
@@ -164,7 +213,7 @@ public class ChangeWindowController{
         } else if ((column == 5 && row == 7-3) || (column == 7 && row == 5-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p1.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 6 && row == 7-3) || (column == 8 && row == 5-3) || (column == 10 && row == 7-3)) {
+        }else if ((column == 6 && row == 7-3) || (column == 8 && row == 5-3) || (column == 10 && row == 7-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p2.png"));
             label.setGraphic(new ImageView(image));
         } else if ((column == 9 && row == 5-3) || (column == 11 && row == 7-3)) {
@@ -197,11 +246,33 @@ public class ChangeWindowController{
         } else if ((column == 9 && row == 9-3)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c9.png"));
             label.setGraphic(new ImageView(image));
+            //  Shows Fox and Geese icons on the left
+        } else if ((column == 1 && row == 2)) {
+            Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\fox_grass.png"));
+            label.setGraphic(new ImageView(image));
+        } else if ((column == 1 && row == 3)) {
+            Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\goose_grass.png"));
+            label.setGraphic(new ImageView(image));
+            //  Writes scores
+        } else if ((column == 2 && row == 2)) {
+            label.setFont(Font.font(null, FontWeight.BOLD, 90));
+            BackgroundFill bf = new BackgroundFill(Color.rgb(98,157,90),
+                    CornerRadii.EMPTY , Insets.EMPTY);
+            Background bg = new Background(bf); //Background of points
+            label.setBackground(bg);            // set background
+            label.setText(String.valueOf(fox_score));
+        } else if ((column == 2 && row == 3)) {
+            label.setFont(Font.font(null, FontWeight.BOLD, 90));
+            BackgroundFill bf = new BackgroundFill(Color.rgb(98,157,90),
+                    CornerRadii.EMPTY , Insets.EMPTY);
+            Background bg = new Background(bf); //Background of points
+            label.setBackground(bg);            // set background
+            label.setText(String.valueOf(geese_score));
+
         } else {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass.png"));
             label.setGraphic(new ImageView(image));
         }
-
         new Scene(label);
         return label.snapshot(null, null);
     }

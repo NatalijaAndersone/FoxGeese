@@ -9,12 +9,15 @@ class DataBaseTest {
 
     @Test
     void insertIntoDB() {
-        db.insertIntoDB("TESTUKAS", 1, "T");
+        db.insertIntoDB("TEST", 1, "T");
+
     }
+
 
     @Test
     void getNames() {
         System.out.println(db.getNames("T"));
-       // assertEquals("TESTUKAS",db.getNames("T"));
+        db.deleteFromDB();
+        // assertEquals("TESTUKAS",db.getNames("T"));
     }
 }
