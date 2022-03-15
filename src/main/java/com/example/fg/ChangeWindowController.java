@@ -121,7 +121,19 @@ public class ChangeWindowController{
         button_c.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println("Accepted");
+                Parent ruleP = null;
+                try {
+                    ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerNameScreen.fxml")));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                //Parent ruleP = FXMLLoader.load(getClass().getResource("PlayerNameScreen.fxml"));
+                Scene ruleScene =  new Scene(ruleP);
+                Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                window.setScene(ruleScene);
+                window.show();
             }
+
         });
 
         button_f.setOnAction(new EventHandler<ActionEvent>() {
