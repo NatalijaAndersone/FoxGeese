@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fg.ChangeWindowController">
+   <children>
+      <Label layoutX="144.0" layoutY="99.0" text="Do you want to quit the game?">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="144.0" layoutY="239.0" mnemonicParsing="false" onAction="#changeToMain" prefHeight="45.0" prefWidth="60.0" text="Yes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="496.0" layoutY="239.0" mnemonicParsing="false" onAction="#runGame" prefHeight="45.0" prefWidth="60.0" text="No">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

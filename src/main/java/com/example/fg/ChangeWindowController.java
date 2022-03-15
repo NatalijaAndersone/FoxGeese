@@ -74,6 +74,25 @@ public class ChangeWindowController{
         window.setScene(ruleScene);
         window.show();
     }
+//Changes to screen where fox wins
+    public void changeToFoxWins(ActionEvent event) throws IOException {
+        Parent ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fox-wins.fxml")));
+        //Parent ruleP = FXMLLoader.load(getClass().getResource("Rules.fxml"));
+        Scene ruleScene =  new Scene(ruleP);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(ruleScene);
+        window.show();
+    }
+//Changes to screen where Geese win
+    public void changeToGeeseWin(ActionEvent event) throws IOException {
+        Parent ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("geese-win.fxml")));
+        //Parent ruleP = FXMLLoader.load(getClass().getResource("Rules.fxml"));
+        Scene ruleScene =  new Scene(ruleP);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(ruleScene);
+        window.show();
+    }
+
     //  Players names from PlayerNameScreen window
     @FXML
     private TextField player_fox_txt;
@@ -121,9 +140,10 @@ public class ChangeWindowController{
         button_c.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println("Accepted");
+                // Switches to quit game window
                 Parent ruleP = null;
                 try {
-                    ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("PlayerNameScreen.fxml")));
+                    ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Quit-game.fxml")));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -147,12 +167,36 @@ public class ChangeWindowController{
                     ex.printStackTrace();
                 }
                 */
+                // Switches to fox surrender window
+                Parent ruleP = null;
+                try {
+                    ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Fox-surrender.fxml")));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                //Parent ruleP = FXMLLoader.load(getClass().getResource("PlayerNameScreen.fxml"));
+                Scene ruleScene =  new Scene(ruleP);
+                Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                window.setScene(ruleScene);
+                window.show();
             }
         });
 
         button_g.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println("Accepted_g");
+                // Switches to geese surrender window
+                Parent ruleP = null;
+                try {
+                    ruleP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Geese-surrender.fxml")));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                //Parent ruleP = FXMLLoader.load(getClass().getResource("PlayerNameScreen.fxml"));
+                Scene ruleScene =  new Scene(ruleP);
+                Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                window.setScene(ruleScene);
+                window.show();
             }
         });
 
