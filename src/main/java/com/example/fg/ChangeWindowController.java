@@ -1,13 +1,11 @@
 package com.example.fg;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,17 +27,16 @@ public class ChangeWindowController{
     int fox_score = 0;      //Points in the beginning of the game
     int geese_score = 15;
 
-    private static final int TILE_WIDTH = 48;
-    private static final int TILE_HEIGHT = 48;
+    public static final int TILE_SIZE = 48;
+    public static final int WIDTH = 16; // for size of the field
+    public static final int HEIGHT = 15; // for size of the field
 
     private static final int PANE_WIDTH = 700;
     private static final int PANE_HEIGHT = 400;
 
-    private final DoubleProperty xOffset = new SimpleDoubleProperty();
-    private final DoubleProperty yOffset = new SimpleDoubleProperty();
+    private Group tileGroup = new Group();
+    private Group pieceGroup = new Group();
 
-    private final IntegerProperty tileXOffset = new SimpleIntegerProperty();
-    private final IntegerProperty tileYOffset = new SimpleIntegerProperty();
 
     private final Pane pane = new Pane();
 
@@ -220,86 +217,64 @@ public class ChangeWindowController{
 
     private void build() throws FileNotFoundException {
 
-        int numTileCols = (PANE_WIDTH / TILE_WIDTH + 2);
-        int numTileRows = (PANE_HEIGHT / TILE_HEIGHT + 2);
-
-        tiles = new ImageView[numTileCols][numTileRows];
-
-        for (int colIndex = 0; colIndex < numTileCols; colIndex++) {
-
-            final int col = colIndex;
-
-            for (int rowIndex = 0; rowIndex < numTileRows; rowIndex++) {
-
-                final int row = rowIndex;
+        for (int column = 0; column < HEIGHT; column++) {
+            for (int row = 0; row < WIDTH; row++) {
 
                 ImageView tile = new ImageView();
-                tile.setImage(getImage(col - tileXOffset.get(), row - tileYOffset.get()));
-                tile.setFitWidth(TILE_WIDTH);
-                tile.setFitHeight(TILE_HEIGHT);
-
-                xOffset.addListener((obs, oldOffset, newOffset) -> {
-                    double offset = newOffset.intValue() % TILE_WIDTH + (col - 1) * TILE_WIDTH;
-                    tile.setLayoutX(offset);
-                });
-                tile.setLayoutX(xOffset.intValue() % TILE_WIDTH + (col - 1) * TILE_WIDTH);
-
-                yOffset.addListener((obs, oldOffset, newOffset) -> {
-                    double offset = newOffset.intValue() % TILE_HEIGHT + (row - 1) * TILE_HEIGHT;
-                    tile.setLayoutY(offset);
-                });
-                tile.setLayoutY(yOffset.intValue() % TILE_HEIGHT + (row - 1) * TILE_HEIGHT);
+                tile.setImage(getImage(row, column));
+                tile.setFitWidth(TILE_SIZE);
+                tile.setFitHeight(TILE_SIZE);
+                tile.setLayoutX((row - 1) * TILE_SIZE);
+                tile.setLayoutY((column - 1) * TILE_SIZE);
+                tileGroup.getChildren().add(tile);
 
                 pane.getChildren().add(tile);
-
-                tiles[col][row] = tile;
-
             }
         }
     }
 
     private Image getImage(int column, int row) throws FileNotFoundException {
         Label label = new Label();
-        if ((column == 6 && row == 8-3) || (column == 8 && row == 6-3) || (column == 8 && row == 8-3) || (column == 8 && row == 10-3) || (column == 10 && row == 8-3)) {
+        if ((column == 6 && row == 5) || (column == 8 && row == 3) || (column == 8 && row == 5) || (column == 8 && row == 7) || (column == 10 && row == 5)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p5.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 8-3) || (column == 8 && row == 7-3) || (column == 8 && row == 9-3) || (column == 9 && row == 8-3)) {
+        } else if ((column == 7 && row == 5) || (column == 8 && row == 4) || (column == 8 && row == 6) || (column == 9 && row == 5)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c2468.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 7-3) || (column == 7 && row == 5-3)) {
+        } else if ((column == 5 && row == 4) || (column == 7 && row == 2)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p1.png"));
             label.setGraphic(new ImageView(image));
-        }else if ((column == 6 && row == 7-3) || (column == 8 && row == 5-3) || (column == 10 && row == 7-3)) {
+        }else if ((column == 6 && row == 4) || (column == 8 && row == 2) || (column == 10 && row == 4)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p2.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 5-3) || (column == 11 && row == 7-3)) {
+        } else if ((column == 9 && row == 2) || (column == 11 && row == 4)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p3.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 8-3) || (column == 7 && row == 6-3) || (column == 7 && row == 10-3)) {
+        } else if ((column == 5 && row == 5) || (column == 7 && row == 3) || (column == 7 && row == 7)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p4.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 6-3) || (column == 9 && row == 10-3) || (column == 11 && row == 8-3)) {
+        } else if ((column == 9 && row == 3) || (column == 9 && row == 7) || (column == 11 && row == 5)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p6.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 5 && row == 9-3) || (column == 7 && row == 11-3)) {
+        } else if ((column == 5 && row == 6) || (column == 7 && row == 8)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p7.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 6 && row == 9-3) || (column == 8 && row == 11-3) || (column == 10 && row == 9-3)) {
+        } else if ((column == 6 && row == 6) || (column == 8 && row == 8) || (column == 10 && row == 6)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p8.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 11-3) || (column == 11 && row == 9-3)) {
+        } else if ((column == 9 && row == 8) || (column == 11 && row == 6)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_p9.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 7-3)) {
+        } else if ((column == 7 && row == 4)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c1.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 7-3)) {
+        } else if ((column == 9 && row == 4)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c7.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 7 && row == 9-3)) {
+        } else if ((column == 7 && row == 6)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c3.png"));
             label.setGraphic(new ImageView(image));
-        } else if ((column == 9 && row == 9-3)) {
+        } else if ((column == 9 && row == 6)) {
             Image image = new Image(new FileInputStream("src\\main\\resources\\tiles\\grass_c9.png"));
             label.setGraphic(new ImageView(image));
             //  Shows Fox and Geese icons on the left
