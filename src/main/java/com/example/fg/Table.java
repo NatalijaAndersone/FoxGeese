@@ -25,6 +25,9 @@ public class Table {
 
     @Override   // Forms the line in results table
     public String toString(){
+        if (name.equals("")) {
+            return " " + place + "\t\t\t"+ "unknown" + "    \t\t\t"+ score; // showing UNKNOWN if no player name in db
+        }
         if (name.length() <= 7) {
             return " " + place + "\t\t\t"+ name + "    \t\t\t\t"+ score;
         } else {
